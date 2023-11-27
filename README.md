@@ -1,1 +1,9 @@
-# Grupo3_Estudo_de_Caso-04
+# Grupo_Diogenes_3
+
+Integrantes do grupo:
+
+- Arthur Renê
+- Gabriel Simões
+- Manoel Leonardo
+- Rafael Souza
+- Victor Cauã
