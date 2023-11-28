@@ -101,18 +101,30 @@ class PedidoFornecedor:
             server.login(self.smtp_username, self.smtp_password)
             server.sendmail("sistema@empresa.com", [self.email_gerente], msg.as_string())
 
+def gerar_relatorio():
+    try:
+        with open(arquivo_origem, 'r') as arquivo_entrada:
+            dados = arquivo_entrada.read()
+
+        with open(arquivo_destino, 'w') as arquivo_saida:
+            arquivo_saida.write(dados)
+
+        print(f'Dados copiados de {arquivo_origem} para {arquivo_destino} com sucesso.')
+    except FileNotFoundError:
+        print(f'O arquivo {arquivo_origem} não foi encontrado.')
+    except Exception as e:
+        print(f'Ocorreu um erro: {e}')
+
 def exibir_menu():
     print("\nMenu:")
     print("1. Cadastrar Funcionário")
     print("2. Gerenciar Funcionário")
     print("3. Acessar Informações do Funcionário")
-    print("4. Gerar Gráfico de Vendas")
-    print("5. Relatório de Movimentação de Estoque")
-    print("6. Relatório de Eficiência Operacional")
-    print("7. Sair")
+    print("4. Gerar Relatorio")
+    print("5.  Sair")
 
 def verificar_senha():
-    senha_correta = "senha123"  # Substitua pela sua senha real
+    senha_correta = "senha123"  
     tentativas = 3
 
     while tentativas > 0:
@@ -142,16 +154,9 @@ if __name__ == "__main__":
             elif escolha == "3":
                 controle_estoque.acessar_funcionario()
             elif escolha == "4":
-                arquivo_grafico = input("Insira o arquivo para gerar o gráfico: ")
-                gerar_grafico(arquivo_grafico)
-                print("Gráfico gerado")
-            elif escolha == "5":
-                arquivos_relatorios = ['arquivo1.csv', 'arquivo2.csv', 'arquivo3.csv']
+                arquivos_relatorios = input("Insira o arquivo para gerar o relatorio: ")
                 relatorio_movimentacao_estoque(arquivos_relatorios)
-            elif escolha == "6":
-                arquivos_relatorios = ['arquivo1.csv', 'arquivo2.csv', 'arquivo3.csv']
-                relatorio_eficiencia_operacional(arquivos_relatorios)
-            elif escolha == "7":
+            elif escolha == "5":
                 break
             else:
                 print("Opção inválida. Tente novamente.")
